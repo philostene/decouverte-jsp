@@ -3,6 +3,7 @@ package co.simplon.poleEmploi.decouverte.jsp;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,7 @@ public class HelloWorld extends HttpServlet {
 			throws ServletException, IOException {
 		String message = messagePut;
 		String parametre = request.getParameter("nom");
-		if (parametre != null) {
+		if (parametre.length()!=0) {
 			message += parametre;
 		} else {
 			message += "World";
@@ -46,8 +47,22 @@ public class HelloWorld extends HttpServlet {
 
 		response.setContentType("text/html");
 
-		PrintWriter out = response.getWriter();
-		out.println("<h1>" + message + "</h1>");
+		
+//		PrintWriter out = response.getWriter();
+//		out.println("<h1>" + message + "</h1>");
+		 Personne toto = new Personne();
+		 toto.setAge(20);
+		 toto.setNom("Phil");
+		 toto.setPrenom("Dany");
+		 request.setAttribute("person",toto);
+		 request.setAttribute("message",message.toUpperCase());
+		 RequestDispatcher rd=request.getRequestDispatcher("./NewFile.jsp");
+				 rd.forward(request, response);
+		
+	
+		//response.sendRedirect("./hello.jsp");
+		
+		
 	}
 
 	public void destroy() {
