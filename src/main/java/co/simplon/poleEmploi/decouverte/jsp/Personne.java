@@ -1,10 +1,22 @@
 package co.simplon.poleEmploi.decouverte.jsp;
 
-public class Personne {
+import java.io.Serializable;
+
+public class Personne implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private String nom;
 	private String prenom;
 	private int age;
+	
+	Personne(){
+	
+	};
+	
 	public String getNom() {
 		return nom;
 	}
